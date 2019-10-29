@@ -8,6 +8,10 @@ import javax.persistence.Id
 class Input(@Id
             @GeneratedValue
             val id: Long = 0,
-            val str:String = ""){
+            var str:String = ""){
+
+    fun changeStr (str:String){
+        this.str = str
+    }
 
 }

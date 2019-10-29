@@ -1,5 +1,13 @@
 package com.boltChallenge.demo
 
-class Input(val str:String=""){
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+
+@Entity
+class Input(@Id
+            @GeneratedValue
+            val id: Long = 0,
+            val str:String = ""){
 
 }

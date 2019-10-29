@@ -39,14 +39,15 @@ class AppController {
                     }
 
                 }
+                input[i].changeStr(opCount.toString())
+                inputRepository.save(input[i])
+                inputs.add(input[i])
             }else{
                 input[i].changeStr("não pode ser estável, número Ímpar de entrada")
                 inputRepository.save(input[i])
                 inputs.add(input[i])
             }
-            input[i].changeStr(opCount.toString())
-            inputRepository.save(input[i])
-            inputs.add(input[i])
+
         }
 
         return inputs

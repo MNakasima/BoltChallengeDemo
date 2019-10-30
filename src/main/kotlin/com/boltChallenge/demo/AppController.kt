@@ -26,26 +26,26 @@ class AppController {
         for(i in 0 until input.size) {
             opCount = 0
 
-            if (input[i].resultado.length % 2 == 0) {
-                for (j in 0 until input[i].resultado.length step 2) {
+            if (input[i].entrada.length % 2 == 0) {
+                for (j in 0 until input[i].entrada.length step 2) {
 
-                    if (input[i].resultado.get(j).equals('{') && input[i].resultado.get(j + 1).equals('{')) {
+                    if (input[i].entrada.get(j).equals('{') && input[i].entrada.get(j + 1).equals('{')) {
                         opCount += 1
                     }
-                    if (input[i].resultado.get(j).equals('}') && input[i].resultado.get(j + 1).equals('}')) {
+                    if (input[i].entrada.get(j).equals('}') && input[i].entrada.get(j + 1).equals('}')) {
                         opCount += 1
                     }
-                    if (input[i].resultado.get(j).equals('}') && input[i].resultado.get(j + 1).equals('{')) {
+                    if (input[i].entrada.get(j).equals('}') && input[i].entrada.get(j + 1).equals('{')) {
                         opCount += 2
                     }
 
                 }
-                input[i].changeEntrada(input[i].resultado)
+                input[i].changeEntrada(input[i].entrada)
                 input[i].changeResultado(opCount.toString())
                 inputRepository.save(input[i])
                 inputs.add(input[i])
             } else {
-                input[i].changeEntrada(input[i].resultado)
+                input[i].changeEntrada(input[i].entrada)
                 input[i].changeResultado("não pode ser estável, número Ímpar de entrada")
                 inputRepository.save(input[i])
                 inputs.add(input[i])

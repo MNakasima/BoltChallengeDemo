@@ -23,8 +23,8 @@ class Input(@Id
 
         var resultados = arrayListOf<String>()
 
-        for(entrada in entradas){
-            resultados.add(entrada.resultado)
+        for(r in entradas){
+            resultados.add(r.resultado)
         }
 
         return resultados

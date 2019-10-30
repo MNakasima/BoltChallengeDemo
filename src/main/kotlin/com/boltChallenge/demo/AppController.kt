@@ -16,12 +16,18 @@ class AppController {
     }
 
     @PostMapping
-    fun add(@RequestBody input:List<Input>):List<String>{
+    fun add(@RequestBody listaInput:List<String>):List<String>{
 
+        var input = arrayListOf<Input>()
         var opCount:Int
         var entradas = arrayListOf<Input>()
         var resultados:Input = Input(0,"","")
         var resultadosDB = arrayListOf<String>()
+
+        /*Guarda a lista de entrada via post*/
+        for(lista in listaInput){
+            input.add(Input(0,lista,""))
+        }
 
         /* Guarda apenas o atributo 'entrada' na variavel resultadosDB */
         for(i in list()){
@@ -67,7 +73,7 @@ class AppController {
                     entradas.add(input[i]) // guarda os resultados
                 } else {
                     input[i].setEntradas(input[i].entrada) //Seta o atributo 'entrada' igual a entrada passado por POST
-                    input[i].setResultados("não pode ser estável") //Seta o atributo 'resultado' igual o numero de operacoes feitas para se tornar um operacao estavel
+                    input[i].setResultados("não pode ser estável") //Seta o atributo 'resultado'
                     inputRepository.save(input[i]) //salva no db local
                     entradas.add(input[i]) // guarda os resultados
                 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 class AppController {
 
     @Autowired
-    lateinit var inputRepository: InputRepository
+    lateinit var inputRepository: InputRepository //Injetar dependecia
 
     @GetMapping
     fun list(): List<Input> {

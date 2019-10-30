@@ -18,42 +18,55 @@ class AppController {
     @PostMapping
     fun add(@RequestBody input:List<Input>):List<String>{
 
-        inputRepository.deleteAll()
+        //inputRepository.deleteAll()
         var opCount:Int
-        var inputs = arrayListOf<Input>()
-        var strs:Input = input.get(0)
+        var entradas = arrayListOf<Input>()
+        var resultados:Input = Input(0,"","")
+
+        var resultadosDB = arrayListOf<String>()
+        for(i in list()){
+            resultadosDB.add(i.entrada)
+        }
 
         for(i in 0 until input.size) {
             opCount = 0
 
-            if (input[i].entrada.length % 2 == 0) {
-                for (j in 0 until input[i].entrada.length step 2) {
+            if(resultadosDB.contains(input[i].entrada)){
 
-                    if (input[i].entrada.get(j).equals('{') && input[i].entrada.get(j + 1).equals('{')) {
-                        opCount += 1
-                    }
-                    if (input[i].entrada.get(j).equals('}') && input[i].entrada.get(j + 1).equals('}')) {
-                        opCount += 1
-                    }
-                    if (input[i].entrada.get(j).equals('}') && input[i].entrada.get(j + 1).equals('{')) {
-                        opCount += 2
+                entradas.add(list().get(resultadosDB.indexOf(input[i].entrada)))
+
+            }else{
+
+                if (input[i].entrada.length % 2 == 0) {
+                    for (j in 0 until input[i].entrada.length step 2) {
+
+                        if (input[i].entrada.get(j).equals('{') && input[i].entrada.get(j + 1).equals('{')) {
+                            opCount += 1
+                        }
+                        if (input[i].entrada.get(j).equals('}') && input[i].entrada.get(j + 1).equals('}')) {
+                            opCount += 1
+                        }
+                        if (input[i].entrada.get(j).equals('}') && input[i].entrada.get(j + 1).equals('{')) {
+                            opCount += 2
+                        }
+
                     }
 
+                    input[i].setEntradas(input[i].entrada)
+                    input[i].setResultados(opCount.toString())
+                    inputRepository.save(input[i])
+                    entradas.add(input[i])
+                } else {
+                    input[i].setEntradas(input[i].entrada)
+                    input[i].setResultados("não pode ser estável")
+                    inputRepository.save(input[i])
+                    entradas.add(input[i])
                 }
-                input[i].changeEntrada(input[i].entrada)
-                input[i].changeResultado(opCount.toString())
-                inputRepository.save(input[i])
-                inputs.add(input[i])
-            } else {
-                input[i].changeEntrada(input[i].entrada)
-                input[i].changeResultado("não pode ser estável, número Ímpar de entrada")
-                inputRepository.save(input[i])
-                inputs.add(input[i])
             }
 
         }
 
-        return strs.returnResultados(inputs)
+        return resultados.getResultados(entradas)
 
     }
 

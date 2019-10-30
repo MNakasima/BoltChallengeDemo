@@ -11,15 +11,15 @@ class Input(@Id
             var entrada:String = "",
             var resultado:String = ""){
 
-    fun changeResultado (resultado:String){
+    fun setResultados (resultado:String){
         this.resultado = resultado
     }
 
-    fun changeEntrada (entrada:String){
+    fun setEntradas (entrada:String){
         this.entrada = entrada
     }
 
-    fun returnResultados(entradas:List<Input>):List<String>{
+    fun getResultados(entradas:List<Input>):List<String>{
 
         var resultados = arrayListOf<String>()
 
@@ -28,7 +28,6 @@ class Input(@Id
         }
 
         return resultados
-
     }
 
 }

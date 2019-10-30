@@ -13,7 +13,9 @@ A) Escreva um serviço REST em Java ou em Kotlin com o Spring Boot que receba co
 Exemplo: 
 
 Entrada: 
+{
 ['}{', '{}{}', '{{{}']
+}
 
 Saída:{ [2, 0, 1] }
 

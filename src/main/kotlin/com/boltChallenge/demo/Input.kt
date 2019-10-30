@@ -8,26 +8,26 @@ import javax.persistence.Id
 class Input(@Id
             @GeneratedValue
             val id: Long = 0,
-            var str:String = "",
-            var result:String = ""){
+            var entrada:String = "",
+            var resultado:String = ""){
 
-    fun changeStr (str:String){
-        this.str = str
+    fun changeResultado (resultado:String){
+        this.resultado = resultado
     }
 
-    fun changeResult (result:String){
-        this.result = result
+    fun changeEntrada (entrada:String){
+        this.entrada = entrada
     }
 
-    fun returnStrs(inputs:List<Input>):List<String>{
+    fun returnResultados(entradas:List<Input>):List<String>{
 
-        var strs = arrayListOf<String>()
+        var resultados = arrayListOf<String>()
 
-        for(input in inputs){
-            strs.add(input.str)
+        for(entrada in entradas){
+            resultados.add(entrada.resultado)
         }
 
-        return strs
+        return resultados
 
     }
 
